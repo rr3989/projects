@@ -47,6 +47,9 @@ class Accounts extends React.Component {
                     )
                 })}
             </table>
+            <br></br>
+            <center>Thank You</center>
+            <br></br>
         </div>
         
         

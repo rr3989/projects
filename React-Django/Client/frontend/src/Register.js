@@ -26,13 +26,12 @@ function Register() {
       };
 
      function handleSubmit(event) {
+        
         event.preventDefault();
         axios.post("http://127.0.0.1:8000/login", JSON.stringify(post),config)
             .then(response => {
-                console.log(response)
-                post.confirmpassword=''
-                post.password=''
-                post.username=''
+                console.log(response);
+                alert("User Registered")
             })
             .catch (err => 
                 {
@@ -45,7 +44,7 @@ function Register() {
             <div className="container">
             <center>
                <h1>Register Your Credentials</h1>
-               <form onSubmit={handleSubmit}>
+               <form onSubmit={handleSubmit} id='dataform'>
                         User Name :<input type="text" name="username" onChange={handleInput}/>
                         <p/>
                         Password :<input type="password" name="password" onChange={handleInput}/>
