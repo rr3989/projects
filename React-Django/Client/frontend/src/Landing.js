@@ -4,6 +4,7 @@ import Contact from "./Contact";
 import Login from "./Login";
 import Home from "./Home";
 import Accounts from "./Accounts";
+import Facecapture from "./FaceCapture";
 import Register from "./Register";
 import Users from "./Users";
 
@@ -26,6 +27,9 @@ function Landing() {
     case "/Accounts":
       component = <Accounts/>
       break;
+    case "/Facecapture":
+        component = <Facecapture/>
+        break;
     case "/Register":
         component = <Register/>
         break;
