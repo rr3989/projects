@@ -10,13 +10,12 @@ const Login =() => {
 const [form] = useForm();
 const onFinish = (form) =>{
     let data;
-    axios.get("http://127.0.0.1:8000/users")
+    axios.get("http://127.0.0.1:8000/login")
         .then((res) => {
             data = res.data;
             this.setState({
                 details: data,
             });
-            alert(form.username)
         })
         .catch((err) => {});
 
