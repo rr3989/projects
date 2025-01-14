@@ -30,5 +30,5 @@ def insertAccRecords():
 
 
 #createTable()
-insertAccRecords()
-#delRecords()
+#insertAccRecords()
+delRecords()
