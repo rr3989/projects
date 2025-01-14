@@ -3,6 +3,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import {Button, Form, Input} from 'antd';
 
 
 function Register() {
@@ -13,30 +14,27 @@ function Register() {
         confirmpassword: ""
     });
     
-    const handleInput = (event) => {
-        setPost({...post, [event.target.name]: event.target.value})
-    
-    }
-    
     const config = {
         headers: {
            'Content-Type': 'application/json',
             'accept':'application/json'
         }
       };
+      const [form] = Form.useForm()
 
-     function handleSubmit(event) {
-        
-        event.preventDefault();
-        axios.post("http://127.0.0.1:8000/login", JSON.stringify(post),config)
+     const onFinish = (form) => {
+        axios.post("http://127.0.0.1:8000/login", JSON.stringify(form),config)
             .then(response => {
                 console.log(response);
                 alert("User Registered")
+                form.resetFields();
             })
             .catch (err => 
                 {
                     console.log(err);
                 })
+                
+
     }
 
     return (
@@ -44,18 +42,20 @@ function Register() {
             <div className="container">
             <center>
                <h1>Register Your Credentials</h1>
-               <form onSubmit={handleSubmit} id='dataform'>
-                        User Name :<input type="text" name="username" onChange={handleInput}/>
-                        <p/>
-                        Password :<input type="password" name="password" onChange={handleInput}/>
-                        <p/>
-                        Confirm Password :<input type="password" name="confirmpassword" onChange={handleInput}/>
-                        <p/>
-                    <button type="submit">Submit</button>
-                </form>
-
-               
-</center><br></br>
+               <Form onFinish={onFinish} form ={form} labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+                <Form.Item label='Username' name='username'>
+                    <Input placeholder="Enter Username"/>
+                </Form.Item>
+                <Form.Item label='Password'  name='password'>
+                    <Input type='password'/>
+                </Form.Item>
+                <Form.Item label='Confirm Password'  name='confirmpassword'>
+                    <Input type='password'/>
+                </Form.Item>
+                <Button htmlType="submit" type="primary">Submit</Button>
+                </Form>
+            </center>
+            <br></br>
     </div>
             
         );
