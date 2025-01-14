@@ -1,134 +1,45 @@
 // Filename - src/Login.js
 
 import React, { useState } from 'react';
-
+import {Form, Input, Button} from 'antd';
+import { useForm } from 'antd/es/form/Form';
+import axios from 'axios';
 
 const Login =() => {
-    const [formInput, setFormInput] = useState(
-        {
-        username:"",
-        password: "",
-        confirmpassword: "",
-        successMessage: "",
-});
 
-const [formError, setFormError] = useState({
-    username:"",
-    password: "",
-    confirmpassword: "",   
-
-});
-
-const handleUserInput = (name,value) =>{
-setFormInput({
-    ...formInput,
-    [name]: value,
-    });
-};
-
-const validateFormInput = (event) => {
-    event.preventDefault();
-    let inputError = {
-        username:"",
-        password:"",
-        confirmpassword:"",
-    };
-
-    if(!formInput.username && !formInput.password){
-        setFormError({
-            ...inputError,
-            username:"Enter Valid Username",
-            password: "Password should not be empty",
-        });
-        return;
-    }
-
-
-    if(!formInput.password && !formInput.confirmpassword){
-        setFormError({
-            ...inputError,
-            password:"Password is required",
-            confirmpassword: "Confirm Password is required",
-        });
-        return;
-    }
-    
-    if(!formInput.username){
-        setFormError({
-            ...inputError,
-            username: "Enter Valid Username",
-        });
-        return;
-    }
-    
-    if(!formInput.password){
-        setFormError({
-            ...inputError,
-            password: "Password should not be empty",
-        });
-        return;
-    }
-    
-    if(formInput.password !== formInput.confirmpassword){
-        setFormError({
-            ...inputError,
-            confirmpassword: "Password and Confirm Password should match",
-        });
-        return;
-    }
-    setFormInput({
-        password: "",
-        confirmpassword: "",
-        successMessage: "Password Matched",
-        
-    });
-
-    setFormError(inputError);
-    setFormInput((prevState) => ({
-    ...prevState,
-    successMessage: "Password Matched",
-}));
+const [form] = useForm();
+const onFinish = (form) =>{
+    let data;
+    axios.get("http://127.0.0.1:8000/users")
+        .then((res) => {
+            data = res.data;
+            this.setState({
+                details: data,
+            });
+            alert(form.username)
+        })
+        .catch((err) => {});
 
 }
 
 return (
     <div><center>
         <h1>Please Login to your Account</h1>
-        <form onSubmit={validateFormInput}>
-
-        <label>Username :
-        <input value={formInput.username} 
-        onChange={({target}) => {handleUserInput(target.name, target.value);
-        }}
-        name="username"
-        type="text" 
-        placeholder="Enter Username" />
-        </label>
-        <p className="error">{formError.username}</p>
-        <label>Password :
-        <input value={formInput.password} 
-        onChange={({target}) => {
-            handleUserInput(target.name, target.value);
-        }}
-        name="password"
-        type="password" 
-        placeholder="Enter Password" />
-        </label>
-        <p className="error">{formError.password}</p>
-      
-        <label>Confirm Password :
-        <input value={formInput.confirmpassword} 
-        onChange={({target}) => {
-            handleUserInput(target.name, target.value);
-        }}
-        name="confirmpassword"
-        type="password" 
-        placeholder="Confirm Password" />
-        </label>
-        <p className="error">{formError.confirmpassword}</p>
-        <p className="success-message">{formInput.successMessage}</p>
-        <input type="submit" value="Submit" />
-        </form>
+        <Form onFinish={onFinish} form ={form} labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+                <Form.Item label='Username' name={"username"}
+                rules={[{ required: true, message: 'Please input your username!' }]}>
+                    <Input placeholder="Enter Username"/>
+                </Form.Item>
+                <Form.Item label='Password'  name={"password"}
+                rules={[{ required: true, message: 'Please input your password!' }]}>
+                    <Input type='password'/>
+                </Form.Item>
+                <Form.Item label='Confirm Password'  name={"confirmpassword"}
+                rules={[{ required: true, message: 'Please confirm your password!' }]}>
+                    <Input type='password'/>
+                </Form.Item>
+                <Button htmlType="submit" type="primary">Login</Button>
+                </Form>
         </center>
     </div>
 );
