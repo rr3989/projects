@@ -1,30 +1,30 @@
-import { useCallback, useRef, useState } from "react"
-import Webcam from "react-webcam";
+import {React,useRef,useCallback,useState} from 'react';
+import Webcam from 'react-webcam';
 
-const FaceCapture =() => {
-    const [image, setImage] =useState(null);
-    const [hasPermission, setHasPermission] = useState(null);
+function Camera (){
+
     const webcamRef = useRef(null)
+    const [image, setImage] = useState(null)
 
-    const capture = useCallback(() => {
-        if(webcamRef.current){
-            const imgSrc = webcamRef.current.getScreenshot();
-            setImage(imgSrc);
-        }
+    const capturePhoto = useCallback(() => {
+            const imageSrc = webcamRef.current.getScreenshot();
+            setImage(imageSrc);
     }, [webcamRef])
 
-    return 
-    {
-    <div>
+    return (
         <>
-        <Webcam ref={webcamRef} screenshotFormat = "image/jpeg"/>
-        <button onClick={capture}>Capture Pic</button>
-        {image && <img src={imgSrc} alt="captured"/>}
+        <center>
+            <Webcam ref={webcamRef} screenshotFormat = "image/png"/>
+            <button onClick={capturePhoto}>Capture Pic</button>
+            {image && (
+                <div>
+                    <img src={image} alt = "Screenshot"/>
+                </div>
+            )}
+           </center>
         </>
-    </div>
+    )
+    
+}
 
-    };
-
-};
-
-export default FaceCapture;
+export default Camera;

@@ -9,7 +9,7 @@ export default function Nav() {
     <li><a href="./Register">Register</a></li> 
     <li><a href="./Users">Registered Users</a></li>
     <li><a href="./Accounts">Accounts</a></li> 
-    <li><a href="./Facecapture">FaceCapture</a></li> 
+    <li><a href="./FaceCapture">FaceCapture</a></li> 
     <li><a href="./Contact">Contact</a></li>
     <li><a href="./About">About</a></li>
   </ul>
