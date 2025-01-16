@@ -6,6 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 facedb = BASE_DIR / "FaceBase.db"
 
+
 conn=sqlite3.connect(facedb)
 
 

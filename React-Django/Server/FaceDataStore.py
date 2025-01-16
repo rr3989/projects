@@ -4,7 +4,7 @@ import sqlite3
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-
+print("base - ", BASE_DIR)
 
 #faceDetect=cv2.CascadeClassifier('haarcascade_frontalface_default.xml');
 faceDetect = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -29,8 +29,8 @@ gen=input('Enter User Gender : ')
 cr=input('Enter User Criminal Records : ')
 
 sampleNum=0
-faceimg = BASE_DIR / "//face//User."
-    
+faceimg = BASE_DIR / "face/User."
+print("faceimg - ", faceimg)    
 while(True):
     ret,img=cam.read();
     gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -38,7 +38,8 @@ while(True):
     for(x,y,w,h) in faces:
         sampleNum=sampleNum+1;
         #cv2.imwrite("D://PyCharm//PycharmProjects//PythonProject//FaceRecognition//face//User."+str(Id)+"."+str(sampleNum)+".jpg",gray[y:y+h,x:x+w])
-        cv2.imwrite("D://Microsoft VS Code//projects//React-Django//Server//face//User."+str(Id)+"."+str(sampleNum)+".jpg",gray[y:y+h,x:x+w])
+        #cv2.imwrite("D://Microsoft VS Code//projects//React-Django//Server//face//User."+str(Id)+"."+str(sampleNum)+".jpg",gray[y:y+h,x:x+w])
+        cv2.imwrite("C://Users//rr398//.vscode//projects//React-Django//Server//face//User."+str(Id)+"."+str(sampleNum)+".jpg",gray[y:y+h,x:x+w])
         cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
         cv2.waitKey(100);
     cv2.imshow("Face",img);
