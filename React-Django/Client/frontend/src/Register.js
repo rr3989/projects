@@ -25,27 +25,26 @@ function Register() {
       const reset = () => {
         form.resetFields();
       };
-    
-      
       const onFinish = (form) => {
-      axios.post("http://127.0.0.1:8000/login", JSON.stringify(form),config)
-            .then(response => {
-                console.log(response);
-                if(form.password!=form.confirmpassword)
-                {
-                    alert("Passwords Dont Match")
-                }
-                else
-                {
+
+        if(form.password!==form.confirmpassword)
+            {
+                alert("Passwords Dont Match")
+            }
+            else
+            {
+                axios.post("http://127.0.0.1:8000/login", JSON.stringify(form),config)
+                .then(response => {
                     alert("User Registered")
-                }
+                    console.log(response);
+                })
+                .catch (err => 
+                    {
+                        console.log(err);
+                    }) 
+            }
                 reset();
                 
-            })
-            .catch (err => 
-                {
-                    console.log(err);
-                })
     }
 
     return (
