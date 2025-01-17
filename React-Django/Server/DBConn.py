@@ -11,7 +11,7 @@ conn=sqlite3.connect(facedb)
 
 
 def delRecords():
-    cmd_delete = "DELETE from People where ID=4"
+    cmd_delete = "DELETE from People where ID in(1)"
     cursor = conn.execute(cmd_delete)
     conn.commit()
     conn.close()
@@ -32,4 +32,4 @@ def insertAccRecords():
 
 #createTable()
 #insertAccRecords()
-#delRecords()
+delRecords()

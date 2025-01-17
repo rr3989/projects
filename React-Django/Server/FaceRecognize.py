@@ -19,7 +19,7 @@ fontcolor = (0, 255, 0)
 #cv2.putText(im, str(Id), (x,y+h), fontface, fontscale, fontcolor)
 
 def getProfile(id):
-    facedb = BASE_DIR / "FaceBase.db"
+    facedb = "C://Users//rr398//.vscode//projects//React-Django//Server//FaceBase.db"
     conn=sqlite3.connect(facedb)
     fullcmd="SELECT People.ID,Name,Age,Gender,CR,Balance FROM People,Account WHERE People.ID="+str(id) +" and Account.ID="+str(id)
     cursor=conn.execute(fullcmd)

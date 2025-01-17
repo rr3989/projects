@@ -45,7 +45,7 @@ while(True):
     cv2.imshow("Face",img);
     cv2.waitKey(1);
     if(sampleNum>50):
-        break;
+        break;7
 cam.release()
 cv2.destroyAllWindows()
 insertOrUpdate(Id,name,age,gen,cr)

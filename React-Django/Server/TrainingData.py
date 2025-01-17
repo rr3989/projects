@@ -7,7 +7,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
-faceimg=BASE_DIR / "face"
+faceimg="C://Users//rr398//.vscode//projects//React-Django//Server//face"
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 path=faceimg
@@ -32,7 +32,7 @@ def getImagesWithID(path):
     return np.array(IDs),faces
 IDs,faces=getImagesWithID(path)
 recognizer.train(faces,IDs)
-trainingData = BASE_DIR / "trainingData.yml"
+trainingData = "C://Users//rr398//.vscode//projects//React-Django//Server//trainingData.yml"
 print(trainingData)
 recognizer.save(trainingData)
 cv2.destroyAllWindows()
