@@ -27,10 +27,11 @@ class Users extends React.Component {
     render() {
         return (
           
-            <div className="container jumbotron ">
-    <div className="userlist">
+            <div className="container ">
+    <center>
+    <h1>Current Registered Users List</h1></center>
+     <div className="userlist">
             <table align="center" border={1}> 
-                <th><tr>Current Users List</tr></th>
                 <tr>
                     
                     <td>UserName</td>

@@ -27,12 +27,11 @@ class Accounts extends React.Component {
     render() {
         return (
           
-            <div className="container jumbotron ">
+            <div className="container">
+     <center><h1>Current Accounts with Bank </h1></center>
     <div className="userlist">
-            <table align="center" border={1}> 
-                <th><tr>Current Accounts</tr></th>
+            <table align="center" border={1}>
                 <tr>
-                    
                     <td>Name</td>
                     <td>Age</td>
                     <td>Gender</td>

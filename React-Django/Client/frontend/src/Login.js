@@ -4,14 +4,10 @@ import React, { useState } from 'react';
 import {Form, Input, Button} from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { Route, Routes, Router, BrowserRouter } from 'react-router-dom';
-import AccountDtl from './AccountDtl';
 
 
 const Login =() => {
 
-//const navigate = useNavigate()
 const [form] = useForm();
 
 
@@ -21,6 +17,20 @@ const state = {
     password: "",
     confirmpassword: "",
 };
+
+function componentDidMount() {
+    let acc;
+    axios.get("http://127.0.0.1:8000/users", this.state)
+        .then((res) => {
+            acc = res.data;
+            this.setState({
+                account: acc,
+            }  
+        );
+        })
+        .catch((err) => {});
+}
+
 
 const OnFinish = (form) =>{
     
@@ -36,7 +46,8 @@ const OnFinish = (form) =>{
                 data = res.data;
                 let details=Object.values(data)
                 
-                for(let i in details){
+                for(let i in details)
+                {
                     if(details[i].username === form.username)
                     {
                         if(details[i].password !== form.password)
@@ -45,19 +56,12 @@ const OnFinish = (form) =>{
                         }
                         else
                         {
-                            
-                            //navigate('/AccountDtl');
-                            form.resetFields()
-                            
-                            
+                            alert("Welcome : " + details[i].username)
+                            componentDidMount();
                         }
                         break
                     }
-                    else
-                    {
-                        alert("Username is not Registered")
-                        break
-                    }
+                   
                 }
 
                 this.setState({
@@ -66,7 +70,7 @@ const OnFinish = (form) =>{
             })
             .catch((err) => {});
     }
-}
+}  
 return (
     <div><center>
         <h1>Please Login to your Account</h1>
@@ -85,6 +89,7 @@ return (
                 </Form.Item>
                 <Button htmlType="submit" type="primary">Login</Button>
                 </Form>
+            <br></br>
         </center>
     </div>
 );
