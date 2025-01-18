@@ -22,7 +22,6 @@ def createTable():
     conn.commit()
     conn.close()
 
-
 def insertAccRecords():
     cmd_insert="INSERT INTO Account(ID,Balance) Values(4, 7000)"
     conn.execute(cmd_insert)
