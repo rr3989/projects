@@ -17,9 +17,9 @@ fontface = cv2.FONT_HERSHEY_SIMPLEX
 fontscale = 1
 fontcolor = (0, 255, 0)
 #cv2.putText(im, str(Id), (x,y+h), fontface, fontscale, fontcolor)
+facedb = BASE_DIR / "FaceBase.db"
 
 def getProfile(id):
-    facedb = "C://Users//rr398//.vscode//projects//React-Django//Server//FaceBase.db"
     conn=sqlite3.connect(facedb)
     fullcmd="SELECT ID,NAME,AGE FROM PEOPLE WHERE PEOPLE.ID="+str(id)
     cursor=conn.execute(fullcmd)

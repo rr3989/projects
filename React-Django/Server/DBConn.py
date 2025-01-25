@@ -25,10 +25,10 @@ def createTable():
 
 def alterTable():
     cmd_alter = "ALTER TABLE PEOPLE(ID INT PRIMARY KEY NOT NULL, Name INT NOT NULL)"
-    cursor=conn.execute(cmd_create)
+    cursor=conn.execute(cmd_alter)
     conn.commit()
     conn.close()
 
-createTable()
+#createTable()
 #insertAccRecords()
-#delRecords()
+delRecords()
