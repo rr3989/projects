@@ -11,13 +11,13 @@ faceDetect = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalf
 
 cam=cv2.VideoCapture(0);
 
-def insertOrUpdate(Id,Name,Age,Gen,CR):
+def insertOrUpdate(Id,Name,Age):
     #conn=sqlite3.connect("D://PyCharm//PycharmProjects//PythonProject//FaceRecognition//FaceBase.db")
     facedb = BASE_DIR / "FaceBase.db"
     conn=sqlite3.connect(facedb)
     
-    params = (Id,Name,Age,Gen,CR)
-    cmd="INSERT INTO People(ID,Name,Age,Gender,CR) Values(?, ?, ?, ?, ?)"
+    params = (Id,Name,Age)
+    cmd="INSERT INTO People(ID,NAME,AGE) Values(?, ?, ?)"
     conn.execute(cmd, params)
     conn.commit()
     conn.close()
@@ -25,8 +25,6 @@ def insertOrUpdate(Id,Name,Age,Gen,CR):
 Id=input('Enter User Id : ')
 name=input('Enter User Name : ')
 age=input('Enter User Age : ')
-gen=input('Enter User Gender : ')
-cr=input('Enter User Criminal Records : ')
 
 sampleNum=0
 faceimg = BASE_DIR / "face/User."
@@ -48,5 +46,5 @@ while(True):
         break;7
 cam.release()
 cv2.destroyAllWindows()
-insertOrUpdate(Id,name,age,gen,cr)
+insertOrUpdate(Id,name,age)
 print("Data Stored")

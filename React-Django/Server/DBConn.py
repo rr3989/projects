@@ -11,24 +11,24 @@ conn=sqlite3.connect(facedb)
 
 
 def delRecords():
-    cmd_delete = "DELETE from People where ID in(1)"
+    cmd_delete = "Delete from People"
     cursor = conn.execute(cmd_delete)
     conn.commit()
     conn.close()
 
 def createTable():
-    cmd_create = "CREATE TABLE Account(ID INT PRIMARY KEY NOT NULL, Balance INT NOT NULL)"
+    cmd_create = "CREATE TABLE PEOPLE (ID INT PRIMARY KEY NOT NULL, NAME VARCHAR NOT NULL, AGE INT NOT NULL)"
     cursor=conn.execute(cmd_create)
     conn.commit()
     conn.close()
 
-def insertAccRecords():
-    cmd_insert="INSERT INTO Account(ID,Balance) Values(4, 7000)"
-    conn.execute(cmd_insert)
+
+def alterTable():
+    cmd_alter = "ALTER TABLE PEOPLE(ID INT PRIMARY KEY NOT NULL, Name INT NOT NULL)"
+    cursor=conn.execute(cmd_create)
     conn.commit()
     conn.close()
 
-
-#createTable()
+createTable()
 #insertAccRecords()
-delRecords()
+#delRecords()

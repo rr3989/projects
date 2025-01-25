@@ -21,7 +21,7 @@ fontcolor = (0, 255, 0)
 def getProfile(id):
     facedb = "C://Users//rr398//.vscode//projects//React-Django//Server//FaceBase.db"
     conn=sqlite3.connect(facedb)
-    fullcmd="SELECT People.ID,Name,Age,Gender,CR,Balance FROM People,Account WHERE People.ID="+str(id) +" and Account.ID="+str(id)
+    fullcmd="SELECT ID,NAME,AGE FROM PEOPLE WHERE PEOPLE.ID="+str(id)
     cursor=conn.execute(fullcmd)
     profile=None
     for row in cursor:
@@ -40,9 +40,6 @@ while(True):
         if(profile!=None):
             cv2.putText(img,"Name : "+str(profile[1]),(x,y+h+20),fontface, fontscale, fontcolor)
             cv2.putText(img,"Age : "+str(profile[2]),(x,y+h+45),fontface, fontscale, fontcolor)
-            cv2.putText(img,"Gender : "+str(profile[3]),(x,y+h+70),fontface, fontscale, fontcolor)
-            cv2.putText(img,"Criminal : "+str(profile[4]),(x,y+h+95),fontface, fontscale, fontcolor)
-            cv2.putText(img,"Balance : "+str(profile[5]),(x,y+h+120),fontface, fontscale, fontcolor)
         else:
             cv2.putText(img,"Unknown User Alert",(x,y+h+20),fontface, fontscale, fontcolor)
 
